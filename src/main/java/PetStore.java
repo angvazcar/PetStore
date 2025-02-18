@@ -4,13 +4,17 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.List;
+import java.util.ArrayList;
 
 public class PetStore {
 
-    public static void main(String[] args) {
-        String url = "https://petstore.swagger.io/v2/pet/findByStatus?status=sold";
+    //public static void main(String[] args) {
+        private static final String url = "https://petstore.swagger.io/v2/pet/findByStatus?status=sold";
+        public static List<Pet> getSoldPets() {
+            List<Pet> petsList = new ArrayList<>();
 
-        try {
+            try {
             // Crear cliente HTTP
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
@@ -29,13 +33,17 @@ public class PetStore {
             for (int i = 0; i < petsArray.length(); i++) {
                 JSONObject pet = petsArray.getJSONObject(i);
                 int id = pet.getInt("id");
-                String name = pet.optString("name", "Sin nombre"); // Maneja el caso si no tiene nombre
-                System.out.println("{" + id + ", " + name + "}");
+                String name = pet.optString("name", "Sin nombre"); // En caso de no tener nombre nombre
+                //System.out.println("{" + id + ", " + name + "}");
+                if (id != -1)
+                    petsList.add(new Pet(id, name));
+
             }
 
         } catch (IOException | InterruptedException | JSONException e) {
             e.printStackTrace();
         }
+            return petsList;
     }
 }
 
