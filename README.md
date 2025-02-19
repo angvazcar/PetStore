@@ -4,7 +4,7 @@ This readme will document whatever steps are necessary to get PetStore running.
 
 ### What is this repository for ###
 
-This code covers the exercise 3 related to data in APIs. Section 3 related to how many pets have the same name is included in here.   
+This code covers the exercise 3, section 3 related to data in APIs. Section 3 related to how many pets have the same name is included in here.   
 As there is a dependency with the other sections what we have done is create the following structure:  
 
 PetStoreProject/    
